@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "aaf": {
+      "type": "http",
+      "url": "https://a.af/mcp",
+      "oauth_resource": "https://a.af/mcp"
+    }
+  }
+}

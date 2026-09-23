@@ -1,0 +1,19 @@
+{
+  "name": "url-shortener-by-aaf",
+  "version": "0.2.0",
+  "description": "Create, manage, organize, and analyze secure A.af short links from Codex and ChatGPT.",
+  "author": {
+    "name": "A.af"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "URL Shortener by A.af",
+    "shortDescription": "Create and manage links, QR codes, campaigns, domains, and analytics.",
+    "longDescription": "Use A.af from your AI assistant to create safe short links, inspect and manage their lifecycle, generate scannable QR codes, choose active custom domains, and understand privacy-safe link and campaign performance.",
+    "developerName": "A.af",
+    "category": "Productivity",
+    "capabilities": ["MCP tools", "OAuth", "Short links", "Analytics", "QR codes"],
+    "defaultPrompt": "Help me create and analyze A.af short links safely."
+  },
+  "mcpServers": "./.mcp.json"
+}

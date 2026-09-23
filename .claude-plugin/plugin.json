@@ -1,0 +1,22 @@
+{
+  "name": "url-shortener-by-aaf",
+  "displayName": "URL Shortener by A.af",
+  "version": "0.2.0",
+  "description": "Create, manage, organize, and analyze secure A.af short links from Claude.",
+  "author": {
+    "name": "A.af",
+    "url": "https://a.af"
+  },
+  "homepage": "https://a.af/developers/ai-connectors",
+  "repository": "https://github.com/suhaib81/url-shortener-by-aaf",
+  "keywords": [
+    "url-shortener",
+    "short-links",
+    "qr-code",
+    "analytics",
+    "mcp"
+  ],
+  "defaultEnabled": false,
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json"
+}
