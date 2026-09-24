@@ -3,9 +3,10 @@
   "version": "0.4.0",
   "private": true,
   "scripts": {
-    "test": "npm run test:copilot && npm run test:gemini",
+    "test": "npm run test:copilot && npm run test:gemini && npm run test:antigravity",
     "test:copilot": "node scripts/verify-microsoft-copilot.mjs",
     "test:gemini": "node scripts/verify-gemini-extension.mjs",
+    "test:antigravity": "node scripts/verify-antigravity-plugin.mjs",
     "validate:gemini": "npx -y @google/gemini-cli@latest extensions validate ."
   }
 }

@@ -7,7 +7,8 @@ URL Shortener by A.af connects leading AI assistants to the production A.af remo
 - **OpenAI ChatGPT and Codex:** distributed as the approved URL Shortener by A.af plugin.
 - **Claude:** packaged as a Claude Code plugin and submitted through Anthropic's plugin review flow.
 - **Microsoft 365 Copilot:** packaged as a declarative agent with an authenticated remote MCP action in [`microsoft-copilot/`](microsoft-copilot/README.md).
-- **Google Gemini CLI:** packaged as a native Gemini CLI extension with OAuth, A.af commands, and the production remote MCP server.
+- **Google Antigravity:** packaged as a native Antigravity plugin with OAuth, an A.af agent skill, and the production remote MCP server.
+- **Google Gemini CLI:** retained as a native extension for supported enterprise and API-key users.
 
 ## Capabilities
 
@@ -45,6 +46,23 @@ npm test
 ```
 
 See [`microsoft-copilot/README.md`](microsoft-copilot/README.md) for Microsoft 365 Agents Toolkit provisioning, validation, and Partner Center distribution steps.
+
+## Install in Google Antigravity
+
+Install the public plugin from GitHub:
+
+```bash
+agy plugin install https://github.com/suhaib81/url-shortener-by-aaf
+```
+
+The plugin loads the A.af skill and remote MCP server. Open the MCP manager with `/mcp`, authenticate the `aaf` server, sign in to A.af, and approve access to the intended workspace. Antigravity discovers OAuth through A.af dynamic client registration; the plugin contains no A.af API key.
+
+For local development:
+
+```bash
+agy plugin install .
+npm run test:antigravity
+```
 
 ## Install in Google Gemini CLI
 
