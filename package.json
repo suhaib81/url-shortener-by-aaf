@@ -1,0 +1,10 @@
+{
+  "name": "url-shortener-by-aaf-connectors",
+  "version": "0.3.0",
+  "private": true,
+  "scripts": {
+    "test": "npm run test:copilot",
+    "test:copilot": "node scripts/verify-microsoft-copilot.mjs"
+  }
+}
+

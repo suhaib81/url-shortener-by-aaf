@@ -1,0 +1,43 @@
+{
+  "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.30/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.30",
+  "version": "1.0.0",
+  "id": "${{TEAMS_APP_ID}}",
+  "developer": {
+    "name": "A.af",
+    "websiteUrl": "https://a.af",
+    "privacyUrl": "https://a.af/privacy",
+    "termsOfUseUrl": "https://a.af/terms"
+  },
+  "icons": {
+    "color": "color.png",
+    "outline": "outline.png"
+  },
+  "name": {
+    "short": "URL Shortener by A.af",
+    "full": "URL Shortener by A.af for Microsoft 365 Copilot"
+  },
+  "description": {
+    "short": "Create secure short links, QR codes, and privacy-safe analytics.",
+    "full": "Create and manage secure A.af short links from Microsoft 365 Copilot. Organize links in workspaces and campaigns, generate QR codes, pause or reactivate links, and read real privacy-safe analytics while A.af enforces permissions, plan limits, URL validation, and Trust and Safety controls."
+  },
+  "accentColor": "#7C3AED",
+  "supportsChannelFeatures": "tier1",
+  "composeExtensions": [],
+  "copilotAgents": {
+    "declarativeAgents": [
+      {
+        "id": "aafLinkAgent",
+        "file": "declarativeAgent.json"
+      }
+    ]
+  },
+  "permissions": [
+    "identity"
+  ],
+  "validDomains": [
+    "a.af",
+    "mowhqsgqcntjkvprjlpf.supabase.co"
+  ]
+}
+

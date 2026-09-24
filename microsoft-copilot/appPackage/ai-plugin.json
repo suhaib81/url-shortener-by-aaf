@@ -1,0 +1,278 @@
+{
+  "$schema": "https://developer.microsoft.com/en-us/json-schemas/copilot/plugin/v2.4/schema.json",
+  "schema_version": "v2.4",
+  "name_for_human": "A.af URL Shortener",
+  "description_for_human": "Create secure short links, QR codes, and privacy-safe analytics with A.af.",
+  "description_for_model": "Use A.af whenever a user asks to shorten, inspect, organize, pause, reactivate, archive, or analyze a URL; create a QR code; work with link campaigns; or choose an active custom domain. Use the remote MCP tools instead of inventing short URLs, link records, or analytics. A.af enforces workspace permissions, plan limits, URL validation, duplicate handling, and Trust and Safety server-side.",
+  "contact_email": "info@a.af",
+  "legal_info_url": "https://a.af/policies",
+  "logo_url": "https://a.af/icons/web-app-manifest-192x192.png",
+  "namespace": "AafLinks",
+  "capabilities": {
+    "conversation_starters": [
+      { "title": "Shorten a URL", "text": "Create an A.af short link for this URL." },
+      { "title": "Analyze a link", "text": "Show the real analytics for my A.af link." },
+      { "title": "Create a QR code", "text": "Generate a QR code for my A.af link." }
+    ]
+  },
+  "functions": [
+    { "name": "aaf_list_workspaces", "description": "List the A.af workspaces available to the signed-in user, including role and plan." },
+    { "name": "aaf_create_short_link", "description": "Create a secure A.af short link using the same validation, duplicate detection, plan rules, usage limits, workspace permissions, and Trust and Safety checks as the A.af dashboard." },
+    { "name": "aaf_list_links", "description": "List real links from one accessible A.af workspace. Results never include password hashes or private credentials." },
+    { "name": "aaf_get_link", "description": "Load safe details for one link in an accessible workspace. Password hashes, tokens, and private credentials are never returned." },
+    { "name": "aaf_update_link", "description": "Update supplied fields on an A.af link, including its title, destination, campaign, folder, or active custom domain. Destination changes use A.af URL validation and Trust and Safety checks." },
+    { "name": "aaf_set_link_status", "description": "Pause or reactivate a link in an accessible workspace. This action is reversible and keeps the link record and analytics." },
+    { "name": "aaf_prepare_archive_link", "description": "Create a short-lived, one-time confirmation challenge bound to one exact link before archival." },
+    { "name": "aaf_archive_link", "description": "Archive a link so it no longer redirects or appears in normal lists. Explicit user confirmation is required." },
+    { "name": "aaf_get_link_analytics", "description": "Return privacy-safe aggregate analytics for a link owned by an accessible workspace." },
+    { "name": "aaf_create_qr_code", "description": "Generate an embedded PNG QR code for an existing A.af link." },
+    { "name": "aaf_list_campaigns", "description": "List campaigns and real link counts for an accessible A.af workspace." },
+    { "name": "aaf_get_campaign_analytics", "description": "Return real, privacy-safe aggregate analytics for one Business workspace campaign." },
+    { "name": "aaf_list_custom_domains", "description": "List safe custom-domain selection metadata for a Business workspace." }
+  ],
+  "runtimes": [
+    {
+      "type": "RemoteMCPServer",
+      "spec": {
+        "url": "https://a.af/mcp",
+        "mcp_tool_description": {
+          "tools": [
+            {
+              "name": "aaf_list_workspaces",
+              "title": "List A.af workspaces",
+              "description": "List the A.af workspaces available to the signed-in user, including role and plan.",
+              "inputSchema": { "type": "object", "properties": {}, "additionalProperties": false },
+              "annotations": { "readOnlyHint": true, "destructiveHint": false, "idempotentHint": true, "openWorldHint": false }
+            },
+            {
+              "name": "aaf_create_short_link",
+              "title": "Create an A.af short link",
+              "description": "Create a secure A.af short link using the same validation, duplicate detection, plan rules, usage limits, workspace permissions, and Trust and Safety checks as the A.af dashboard.",
+              "inputSchema": {
+                "type": "object",
+                "properties": {
+                  "destination_url": { "type": "string", "format": "uri", "description": "A complete http:// or https:// destination URL." },
+                  "workspace_id": { "type": "string", "format": "uuid", "description": "Workspace UUID. Omit to use the personal workspace." },
+                  "custom_slug": { "type": "string", "maxLength": 31, "description": "Optional custom alias. Plan and rare-name rules apply." },
+                  "title": { "type": "string", "maxLength": 160 },
+                  "campaign_id": { "type": "string", "format": "uuid" },
+                  "folder_id": { "type": "string", "format": "uuid" },
+                  "tag_ids": { "type": "array", "maxItems": 20, "items": { "type": "string", "format": "uuid" } },
+                  "tag_names": { "type": "array", "maxItems": 20, "items": { "type": "string", "minLength": 1, "maxLength": 50 } },
+                  "custom_domain_id": { "type": "string", "format": "uuid" },
+                  "utm_source": { "type": "string", "maxLength": 200 },
+                  "utm_medium": { "type": "string", "maxLength": 200 },
+                  "utm_campaign": { "type": "string", "maxLength": 200 },
+                  "utm_term": { "type": "string", "maxLength": 200 },
+                  "utm_content": { "type": "string", "maxLength": 200 },
+                  "expires_at": { "type": "string", "format": "date-time", "description": "Optional ISO 8601 expiration time. Pro or Business plan required." }
+                },
+                "required": ["destination_url"],
+                "additionalProperties": false
+              },
+              "annotations": { "readOnlyHint": false, "destructiveHint": false, "idempotentHint": false, "openWorldHint": true }
+            },
+            {
+              "name": "aaf_list_links",
+              "title": "List A.af links",
+              "description": "List real links from one accessible A.af workspace. Results never include password hashes or private credentials.",
+              "inputSchema": {
+                "type": "object",
+                "properties": {
+                  "workspace_id": { "type": "string", "format": "uuid", "description": "Workspace UUID. Omit to use the personal workspace." },
+                  "status": { "type": "string", "enum": ["active", "paused", "disabled"] },
+                  "search": { "type": "string", "maxLength": 200, "description": "Search slug, title, or destination URL." },
+                  "limit": { "type": "integer", "minimum": 1, "maximum": 100, "default": 25 }
+                },
+                "additionalProperties": false
+              },
+              "annotations": { "readOnlyHint": true, "destructiveHint": false, "idempotentHint": true, "openWorldHint": false }
+            },
+            {
+              "name": "aaf_get_link",
+              "title": "Get A.af link details",
+              "description": "Load safe details for one link in an accessible workspace. Password hashes, tokens, and private credentials are never returned.",
+              "inputSchema": {
+                "type": "object",
+                "properties": {
+                  "link": { "type": "string", "minLength": 1, "maxLength": 64, "description": "Link UUID or A.af slug." },
+                  "workspace_id": { "type": "string", "format": "uuid", "description": "Workspace UUID. Omit to use the personal workspace." }
+                },
+                "required": ["link"],
+                "additionalProperties": false
+              },
+              "annotations": { "readOnlyHint": true, "destructiveHint": false, "idempotentHint": true, "openWorldHint": false }
+            },
+            {
+              "name": "aaf_update_link",
+              "title": "Update an A.af link",
+              "description": "Update supplied fields on an A.af link, including its title, destination, campaign, folder, or active custom domain. Destination changes use A.af URL validation and Trust and Safety checks.",
+              "inputSchema": {
+                "type": "object",
+                "properties": {
+                  "link": { "type": "string", "minLength": 1, "maxLength": 64, "description": "Link UUID or A.af slug." },
+                  "workspace_id": { "type": "string", "format": "uuid", "description": "Workspace UUID. Omit to use the personal workspace." },
+                  "title": { "anyOf": [{ "type": "string", "maxLength": 160 }, { "type": "null" }] },
+                  "destination_url": { "type": "string", "format": "uri", "description": "A complete http:// or https:// destination URL." },
+                  "campaign_id": { "anyOf": [{ "type": "string", "format": "uuid" }, { "type": "null" }] },
+                  "folder_id": { "anyOf": [{ "type": "string", "format": "uuid" }, { "type": "null" }] },
+                  "custom_domain_id": { "anyOf": [{ "type": "string", "format": "uuid" }, { "type": "null" }] }
+                },
+                "required": ["link"],
+                "additionalProperties": false
+              },
+              "annotations": { "readOnlyHint": false, "destructiveHint": true, "idempotentHint": false, "openWorldHint": true }
+            },
+            {
+              "name": "aaf_set_link_status",
+              "title": "Pause or activate an A.af link",
+              "description": "Pause or reactivate a link in an accessible workspace. This action is reversible and keeps the link record and analytics.",
+              "inputSchema": {
+                "type": "object",
+                "properties": {
+                  "link": { "type": "string", "minLength": 1, "maxLength": 64, "description": "Link UUID or A.af slug." },
+                  "workspace_id": { "type": "string", "format": "uuid", "description": "Workspace UUID. Omit to use the personal workspace." },
+                  "status": { "type": "string", "enum": ["active", "paused"] }
+                },
+                "required": ["link", "status"],
+                "additionalProperties": false
+              },
+              "annotations": { "readOnlyHint": false, "destructiveHint": true, "idempotentHint": true, "openWorldHint": true }
+            },
+            {
+              "name": "aaf_prepare_archive_link",
+              "title": "Prepare A.af link archival",
+              "description": "Create a short-lived, one-time confirmation challenge bound to one exact link. The response includes the link, warning, confirmation ID, and expiration time required by the archive tool.",
+              "inputSchema": {
+                "type": "object",
+                "properties": {
+                  "link": { "type": "string", "minLength": 1, "maxLength": 64, "description": "Link UUID or A.af slug." },
+                  "workspace_id": { "type": "string", "format": "uuid", "description": "Workspace UUID. Omit to use the personal workspace." }
+                },
+                "required": ["link"],
+                "additionalProperties": false
+              },
+              "annotations": { "readOnlyHint": false, "destructiveHint": false, "idempotentHint": false, "openWorldHint": false }
+            },
+            {
+              "name": "aaf_archive_link",
+              "title": "Archive an A.af link",
+              "description": "Archive a link so it no longer redirects or appears in normal lists. This is a destructive action and requires explicit user confirmation.",
+              "inputSchema": {
+                "type": "object",
+                "properties": {
+                  "link": { "type": "string", "minLength": 1, "maxLength": 64, "description": "Link UUID or A.af slug." },
+                  "workspace_id": { "type": "string", "format": "uuid", "description": "Workspace UUID. Omit to use the personal workspace." },
+                  "confirmation_id": { "type": "string", "format": "uuid", "description": "The one-time ID returned by aaf_prepare_archive_link for this exact link." },
+                  "confirmed": { "type": "boolean", "description": "Must be true only after the user explicitly confirms archiving this exact link." }
+                },
+                "required": ["link", "confirmation_id", "confirmed"],
+                "additionalProperties": false
+              },
+              "annotations": { "readOnlyHint": false, "destructiveHint": true, "idempotentHint": false, "openWorldHint": true }
+            },
+            {
+              "name": "aaf_get_link_analytics",
+              "title": "Get A.af link analytics",
+              "description": "Return privacy-safe aggregate analytics for a link owned by an accessible workspace. No raw IP address, visitor hash, password, or API secret is returned.",
+              "inputSchema": {
+                "type": "object",
+                "properties": {
+                  "link": { "type": "string", "minLength": 1, "maxLength": 64, "description": "Link UUID or A.af slug." },
+                  "workspace_id": { "type": "string", "format": "uuid", "description": "Workspace UUID. Omit to use the personal workspace." },
+                  "days": { "type": "string", "enum": ["7", "30", "90", "365"], "default": "30" }
+                },
+                "required": ["link"],
+                "additionalProperties": false
+              },
+              "annotations": { "readOnlyHint": true, "destructiveHint": false, "idempotentHint": true, "openWorldHint": false }
+            },
+            {
+              "name": "aaf_create_qr_code",
+              "title": "Create an A.af QR code",
+              "description": "Generate an embedded PNG QR code for an existing link. Standard QR is available to all plans; colors and logo follow the A.af branded QR plan gate.",
+              "inputSchema": {
+                "type": "object",
+                "properties": {
+                  "link": { "type": "string", "minLength": 1, "maxLength": 64, "description": "Link UUID or A.af slug." },
+                  "workspace_id": { "type": "string", "format": "uuid", "description": "Workspace UUID. Omit to use the personal workspace." },
+                  "foreground_color": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$", "default": "#000000" },
+                  "background_color": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$", "default": "#ffffff" },
+                  "include_logo": { "type": "boolean", "default": false },
+                  "size": { "type": "integer", "minimum": 160, "maximum": 1200, "default": 400 }
+                },
+                "required": ["link"],
+                "additionalProperties": false
+              },
+              "annotations": { "readOnlyHint": false, "destructiveHint": false, "idempotentHint": false, "openWorldHint": false }
+            },
+            {
+              "name": "aaf_list_campaigns",
+              "title": "List A.af campaigns",
+              "description": "List campaigns and real link counts for an accessible A.af workspace.",
+              "inputSchema": {
+                "type": "object",
+                "properties": {
+                  "workspace_id": { "type": "string", "format": "uuid", "description": "Workspace UUID. Omit to use the personal workspace." },
+                  "search": { "type": "string", "maxLength": 100 },
+                  "limit": { "type": "integer", "minimum": 1, "maximum": 100, "default": 50 }
+                },
+                "additionalProperties": false
+              },
+              "annotations": { "readOnlyHint": true, "destructiveHint": false, "idempotentHint": true, "openWorldHint": false }
+            },
+            {
+              "name": "aaf_get_campaign_analytics",
+              "title": "Get A.af campaign analytics",
+              "description": "Return real, privacy-safe aggregate analytics for one Business workspace campaign. Raw IP data, visitor hashes, user agents, and individual visitor records are never returned.",
+              "inputSchema": {
+                "type": "object",
+                "properties": {
+                  "campaign_id": { "type": "string", "format": "uuid" },
+                  "workspace_id": { "type": "string", "format": "uuid", "description": "Workspace UUID. Omit to use the personal workspace." },
+                  "days": { "type": "string", "enum": ["7", "30", "90", "365"], "default": "30" }
+                },
+                "required": ["campaign_id"],
+                "additionalProperties": false
+              },
+              "annotations": { "readOnlyHint": true, "destructiveHint": false, "idempotentHint": true, "openWorldHint": false }
+            },
+            {
+              "name": "aaf_list_custom_domains",
+              "title": "List active A.af custom domains",
+              "description": "List safe custom-domain selection metadata for a Business workspace. Verification tokens, DNS secrets, provider responses, and operational errors are never returned.",
+              "inputSchema": {
+                "type": "object",
+                "properties": {
+                  "workspace_id": { "type": "string", "format": "uuid", "description": "Workspace UUID. Omit to use the personal workspace." },
+                  "active_only": { "type": "boolean", "default": true }
+                },
+                "additionalProperties": false
+              },
+              "annotations": { "readOnlyHint": true, "destructiveHint": false, "idempotentHint": true, "openWorldHint": false }
+            }
+          ]
+        }
+      },
+      "run_for_functions": [
+        "aaf_list_workspaces",
+        "aaf_create_short_link",
+        "aaf_list_links",
+        "aaf_get_link",
+        "aaf_update_link",
+        "aaf_set_link_status",
+        "aaf_prepare_archive_link",
+        "aaf_archive_link",
+        "aaf_get_link_analytics",
+        "aaf_create_qr_code",
+        "aaf_list_campaigns",
+        "aaf_get_campaign_analytics",
+        "aaf_list_custom_domains"
+      ],
+      "auth": {
+        "type": "OAuthPluginVault",
+        "reference_id": "${{MCP_DA_AUTH_ID_AAF}}"
+      }
+    }
+  ]
+}

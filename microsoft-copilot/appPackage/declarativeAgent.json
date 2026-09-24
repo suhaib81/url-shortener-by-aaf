@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/copilot/declarative-agent/v1.8/schema.json",
+  "version": "v1.8",
+  "name": "URL Shortener by A.af${{APP_NAME_SUFFIX}}",
+  "description": "Create, manage, organize, and analyze secure A.af short links from Microsoft 365 Copilot.",
+  "instructions": "$[file('instruction.txt')]",
+  "conversation_starters": [
+    {
+      "title": "Shorten a URL",
+      "text": "Create a secure A.af short link for this URL."
+    },
+    {
+      "title": "Recent links",
+      "text": "Show my most recent A.af links."
+    },
+    {
+      "title": "Link analytics",
+      "text": "Summarize the last 30 days of analytics for my A.af link."
+    },
+    {
+      "title": "Create a QR code",
+      "text": "Generate a scannable QR code for my A.af link."
+    },
+    {
+      "title": "Campaign performance",
+      "text": "Show my A.af campaigns and summarize one campaign's performance."
+    },
+    {
+      "title": "Pause a link",
+      "text": "Pause an A.af link until I reactivate it."
+    }
+  ],
+  "actions": [
+    {
+      "id": "aafLinks",
+      "file": "ai-plugin.json"
+    }
+  ]
+}
+

@@ -1,6 +1,12 @@
-# URL Shortener by A.af for Claude
+# URL Shortener by A.af
 
-This Claude plugin connects Claude Code to the production A.af remote MCP server. It uses the same authenticated A.af workspaces, permissions, plan limits, URL validation, duplicate handling, Trust and Safety checks, analytics privacy controls, and audit trail as the web application.
+URL Shortener by A.af connects leading AI assistants to the production A.af remote MCP server. Every integration uses the same authenticated A.af workspaces, permissions, plan limits, URL validation, duplicate handling, Trust and Safety checks, analytics privacy controls, and audit trail as the web application.
+
+## Platforms
+
+- **OpenAI ChatGPT and Codex:** distributed as the approved URL Shortener by A.af plugin.
+- **Claude:** packaged as a Claude Code plugin and submitted through Anthropic's plugin review flow.
+- **Microsoft 365 Copilot:** packaged as a declarative agent with an authenticated remote MCP action in [`microsoft-copilot/`](microsoft-copilot/README.md).
 
 ## Capabilities
 
@@ -31,9 +37,17 @@ claude mcp add --transport http aaf https://a.af/mcp
 
 Use `/mcp` in Claude Code to inspect the connection or restart OAuth.
 
+## Test the Microsoft 365 Copilot package
+
+```bash
+npm test
+```
+
+See [`microsoft-copilot/README.md`](microsoft-copilot/README.md) for Microsoft 365 Agents Toolkit provisioning, validation, and Partner Center distribution steps.
+
 ## Example prompts
 
-- `Create an A.af short link for https://example.com/launch?utm_source=claude.`
+- `Create an A.af short link for https://example.com/launch?utm_source=ai_assistant.`
 - `List the active links in my A.af workspace.`
 - `Pause this A.af link, but do not archive it.`
 - `Show the last 30 days of real analytics for this A.af link.`
@@ -42,7 +56,7 @@ Use `/mcp` in Claude Code to inspect the connection or restart OAuth.
 ## Security
 
 - The plugin contains no A.af, Supabase, or Anthropic credentials.
-- OAuth occurs between the user, Claude, and A.af at `https://a.af/mcp`.
+- OAuth occurs between the user, the supported AI platform, and A.af at `https://a.af/mcp`.
 - A.af enforces membership and role checks server-side.
 - Raw IP addresses, password hashes, OAuth secrets, invite tokens, and private visitor identifiers are never returned.
 - Archival requires a separate short-lived confirmation tied to the exact user, workspace, client, link, and action.
