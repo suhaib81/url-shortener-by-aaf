@@ -1,0 +1,13 @@
+{
+  "name": "url-shortener-by-aaf",
+  "version": "1.0.0",
+  "description": "Create, manage, organize, and analyze secure A.af short links from Gemini CLI.",
+  "contextFileName": "GEMINI.md",
+  "mcpServers": {
+    "aaf": {
+      "httpUrl": "https://a.af/mcp",
+      "description": "Authenticated A.af short-link management, QR codes, campaigns, domains, and analytics.",
+      "timeout": 30000
+    }
+  }
+}

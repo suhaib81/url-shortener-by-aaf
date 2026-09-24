@@ -1,0 +1,9 @@
+description = "List or inspect links in the authorized A.af workspace."
+prompt = """
+Use the authenticated A.af MCP tools to list, search, or inspect only the A.af links that the current user is authorized to access.
+
+User request:
+{{args}}
+
+If the workspace is ambiguous, list the available workspaces and ask the user to choose. Do not invent link records or expose private visitor identifiers.
+"""

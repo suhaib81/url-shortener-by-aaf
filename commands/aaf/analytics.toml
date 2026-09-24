@@ -1,0 +1,8 @@
+description = "Read real privacy-safe analytics for an A.af link or campaign."
+prompt = """
+Use the authenticated A.af MCP analytics tools to answer this request using only real values returned by A.af:
+
+{{args}}
+
+Resolve the intended authorized link or campaign first. Never invent clicks, countries, referrers, devices, unique visitors, or traffic quality values. State clearly when a metric has no data.
+"""

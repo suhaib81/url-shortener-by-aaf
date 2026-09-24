@@ -1,10 +1,11 @@
 {
   "name": "url-shortener-by-aaf-connectors",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "private": true,
   "scripts": {
-    "test": "npm run test:copilot",
-    "test:copilot": "node scripts/verify-microsoft-copilot.mjs"
+    "test": "npm run test:copilot && npm run test:gemini",
+    "test:copilot": "node scripts/verify-microsoft-copilot.mjs",
+    "test:gemini": "node scripts/verify-gemini-extension.mjs",
+    "validate:gemini": "npx -y @google/gemini-cli@latest extensions validate ."
   }
 }
-

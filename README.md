@@ -7,6 +7,7 @@ URL Shortener by A.af connects leading AI assistants to the production A.af remo
 - **OpenAI ChatGPT and Codex:** distributed as the approved URL Shortener by A.af plugin.
 - **Claude:** packaged as a Claude Code plugin and submitted through Anthropic's plugin review flow.
 - **Microsoft 365 Copilot:** packaged as a declarative agent with an authenticated remote MCP action in [`microsoft-copilot/`](microsoft-copilot/README.md).
+- **Google Gemini CLI:** packaged as a native Gemini CLI extension with OAuth, A.af commands, and the production remote MCP server.
 
 ## Capabilities
 
@@ -44,6 +45,32 @@ npm test
 ```
 
 See [`microsoft-copilot/README.md`](microsoft-copilot/README.md) for Microsoft 365 Agents Toolkit provisioning, validation, and Partner Center distribution steps.
+
+## Install in Google Gemini CLI
+
+Install the public extension from GitHub:
+
+```bash
+gemini extensions install https://github.com/suhaib81/url-shortener-by-aaf
+```
+
+Restart Gemini CLI after installation. On first use, run `/mcp auth aaf`, sign in to A.af in the browser, and approve access to the selected workspace. No A.af API key is stored in the extension.
+
+The extension adds these commands:
+
+- `/aaf:shorten <destination URL and options>`
+- `/aaf:links <list or lookup request>`
+- `/aaf:analytics <link or campaign and date range>`
+- `/aaf:qr <A.af link or destination URL>`
+
+Validate the package and its live OAuth/MCP dependencies:
+
+```bash
+npm run test:gemini
+npm run validate:gemini
+```
+
+For local development, use `gemini extensions link .`, restart Gemini CLI, and inspect the connection with `/mcp list`.
 
 ## Example prompts
 

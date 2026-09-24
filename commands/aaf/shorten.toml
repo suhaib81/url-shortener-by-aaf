@@ -1,0 +1,8 @@
+description = "Create a secure A.af short link for a destination URL."
+prompt = """
+Use the authenticated A.af MCP tools to create a short link for the following user request:
+
+{{args}}
+
+Preserve the complete destination URL and all meaningful query parameters. Confirm any explicitly requested custom alias before creation. Do not claim success or invent a short URL unless A.af returns a successful result. Return the short URL first, followed by a concise note if A.af reused an existing link or applied a safety status.
+"""
