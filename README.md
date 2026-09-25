@@ -9,7 +9,7 @@ URL Shortener by A.af connects leading AI assistants to the production A.af remo
 - **Microsoft 365 Copilot:** packaged as a declarative agent with an authenticated remote MCP action in [`microsoft-copilot/`](microsoft-copilot/README.md).
 - **Google Antigravity:** packaged as a native Antigravity plugin with OAuth, an A.af agent skill, and the production remote MCP server.
 - **Google Gemini CLI:** retained as a native extension for supported enterprise and API-key users.
-- **Cursor:** packaged as a Cursor plugin with the A.af skill and remote MCP server. Public Marketplace review is a separate submission step.
+- **Cursor:** packaged as a Cursor plugin with the A.af skill and remote MCP server. Submitted for public Marketplace review on September 25, 2026; not yet listed.
 
 ## Capabilities
 
@@ -35,7 +35,7 @@ For a direct MCP connection without the plugin, add this to your Cursor user-lev
 }
 ```
 
-Run `npm run test:cursor` to validate the package files. On September 25, 2026, the local Cursor installation completed A.af OAuth and successfully called the read-only `aaf_list_workspaces` tool; no link was created during this check. Marketplace publication is separate and requires submitting this public repository at `https://cursor.com/marketplace/publish`.
+Run `npm run test:cursor` to validate the package files. On September 25, 2026, the local Cursor installation completed A.af OAuth and successfully called the read-only `aaf_list_workspaces` tool; no link was created during this check. The public repository was submitted at `https://cursor.com/marketplace/publish` on the same date and awaits Cursor's review. Cursor reviewers should use `.cursor-plugin/plugin.json`; the root `plugin.json` is for Google Antigravity.
 
 ## License and branding
 
