@@ -35,7 +35,7 @@ For a direct MCP connection without the plugin, add this to your Cursor user-lev
 }
 ```
 
-Run `npm run test:cursor` to validate the package files. Cursor Marketplace publication requires an interactive OAuth test and submission of this public repository at `https://cursor.com/marketplace/publish`.
+Run `npm run test:cursor` to validate the package files. On September 25, 2026, the local Cursor installation completed A.af OAuth and successfully called the read-only `aaf_list_workspaces` tool; no link was created during this check. Marketplace publication is separate and requires submitting this public repository at `https://cursor.com/marketplace/publish`.
 
 ## Test locally with Claude Code
 
