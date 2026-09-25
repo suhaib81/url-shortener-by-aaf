@@ -1,0 +1,42 @@
+{
+  "oauthScopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+  ],
+  "addOns": {
+    "common": {
+      "name": "URL Shortener by A.af",
+      "logoUrl": "https://a.af/brand/aaf-brand-icon-white-bg.png",
+      "layoutProperties": {
+        "primaryColor": "#7C3AED",
+        "secondaryColor": "#111827"
+      },
+      "homepageTrigger": {
+        "runFunction": "https://a.af/api/google-workspace/addon",
+        "enabled": true
+      },
+      "openLinkUrlPrefixes": [
+        "https://a.af/"
+      ],
+      "universalActions": [
+        {
+          "label": "Manage A.af connection",
+          "openLink": "https://a.af/google-workspace"
+        },
+        {
+          "label": "A.af Help Center",
+          "openLink": "https://a.af/help"
+        }
+      ]
+    },
+    "gmail": {},
+    "calendar": {},
+    "drive": {},
+    "docs": {},
+    "sheets": {},
+    "slides": {},
+    "httpOptions": {
+      "authorizationHeader": "SYSTEM_ID_TOKEN",
+      "granularOauthPermissionSupport": "OPT_IN"
+    }
+  }
+}
