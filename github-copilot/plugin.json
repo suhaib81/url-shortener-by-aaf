@@ -1,0 +1,14 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "url-shortener-by-aaf",
+  "version": "0.1.0",
+  "description": "Create and manage authenticated A.af short links, QR codes, and privacy-safe analytics in GitHub Copilot.",
+  "author": {
+    "name": "A.af",
+    "url": "https://a.af"
+  },
+  "homepage": "https://a.af/developers/ai-connectors",
+  "repository": "https://github.com/suhaib81/url-shortener-by-aaf",
+  "license": "MIT",
+  "keywords": ["url-shortener", "short-links", "qr-code", "analytics", "mcp"]
+}

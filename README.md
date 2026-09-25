@@ -10,6 +10,7 @@ URL Shortener by A.af connects leading AI assistants to the production A.af remo
 - **Google Antigravity:** packaged as a native Antigravity plugin with OAuth, an A.af agent skill, and the production remote MCP server.
 - **Google Gemini CLI:** retained as a native extension for supported enterprise and API-key users.
 - **Cursor:** packaged as a Cursor plugin with the A.af skill and remote MCP server. Submitted for public Marketplace review on September 25, 2026; not yet listed.
+- **GitHub Copilot:** packaged in [`github-copilot/`](github-copilot/README.md) as an Agent Plugins 1.0 skill plus authenticated remote MCP server. Direct installation is supported; public marketplace listing requires separate review.
 
 ## Capabilities
 
@@ -36,6 +37,16 @@ For a direct MCP connection without the plugin, add this to your Cursor user-lev
 ```
 
 Run `npm run test:cursor` to validate the package files. On September 25, 2026, the local Cursor installation completed A.af OAuth and successfully called the read-only `aaf_list_workspaces` tool; no link was created during this check. The public repository was submitted at `https://cursor.com/marketplace/publish` on the same date and awaits Cursor's review. Cursor reviewers should use `.cursor-plugin/plugin.json`; the root `plugin.json` is for Google Antigravity.
+
+## Install in GitHub Copilot
+
+The GitHub Copilot plugin is in [`github-copilot/`](github-copilot/README.md), separate from the repository-root Google Antigravity package:
+
+```bash
+copilot plugin install suhaib81/url-shortener-by-aaf:github-copilot
+```
+
+Sign in to GitHub Copilot, then authorize the A.af MCP server with your own A.af account when prompted. Run `npm run test:github-copilot` to validate the package structure. Copilot CLI warns that direct repository installs are deprecated; a public Awesome Copilot listing needs separate review and is not implied by direct install.
 
 ## License and branding
 
