@@ -9,6 +9,7 @@ URL Shortener by A.af connects leading AI assistants to the production A.af remo
 - **Microsoft 365 Copilot:** packaged as a declarative agent with an authenticated remote MCP action in [`microsoft-copilot/`](microsoft-copilot/README.md).
 - **Google Antigravity:** packaged as a native Antigravity plugin with OAuth, an A.af agent skill, and the production remote MCP server.
 - **Google Gemini CLI:** retained as a native extension for supported enterprise and API-key users.
+- **Cursor:** packaged as a Cursor plugin with the A.af skill and remote MCP server. Public Marketplace review is a separate submission step.
 
 ## Capabilities
 
@@ -19,6 +20,22 @@ URL Shortener by A.af connects leading AI assistants to the production A.af remo
 - Generate QR codes.
 - Read real privacy-safe link and campaign analytics.
 - List campaigns and active custom domains allowed by the user's workspace role and plan.
+
+## Install in Cursor
+
+The Cursor plugin lives in `.cursor-plugin/plugin.json` and uses the same production A.af MCP server. Install it locally from this repository using Cursor's local plugin import, then open Customize to verify that the `aaf-links` skill and `aaf` MCP server are present. Authenticate through A.af when Cursor prompts; do not paste an A.af API key into the plugin or source files.
+
+For a direct MCP connection without the plugin, add this to your Cursor user-level `mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "aaf": { "url": "https://a.af/mcp" }
+  }
+}
+```
+
+Run `npm run test:cursor` to validate the package files. Cursor Marketplace publication requires an interactive OAuth test and submission of this public repository at `https://cursor.com/marketplace/publish`.
 
 ## Test locally with Claude Code
 

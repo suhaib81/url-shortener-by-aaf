@@ -1,0 +1,21 @@
+{
+  "name": "url-shortener-by-aaf",
+  "displayName": "URL Shortener by A.af",
+  "version": "0.1.0",
+  "description": "Create, manage, and analyze secure A.af short links and QR codes from Cursor using your own A.af account.",
+  "author": {
+    "name": "A.af"
+  },
+  "homepage": "https://a.af/developers/ai-connectors",
+  "repository": "https://github.com/suhaib81/url-shortener-by-aaf",
+  "keywords": [
+    "url shortener",
+    "short links",
+    "qr code",
+    "analytics",
+    "mcp"
+  ],
+  "logo": "google-workspace/assets/icon-128.png",
+  "skills": "./skills/",
+  "mcpServers": "./mcp.json"
+}
