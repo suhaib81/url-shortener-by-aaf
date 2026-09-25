@@ -37,6 +37,10 @@ For a direct MCP connection without the plugin, add this to your Cursor user-lev
 
 Run `npm run test:cursor` to validate the package files. On September 25, 2026, the local Cursor installation completed A.af OAuth and successfully called the read-only `aaf_list_workspaces` tool; no link was created during this check. Marketplace publication is separate and requires submitting this public repository at `https://cursor.com/marketplace/publish`.
 
+## License and branding
+
+The connector source code, manifests, and documentation in this repository are available under the [MIT License](LICENSE). The A.af hosted service and its private source code are not part of this repository or license. A.af names, logos, icons, and other brand assets are excluded from the MIT grant and remain the owner's intellectual property; their inclusion here is solely for identifying the official connector.
+
 ## Test locally with Claude Code
 
 From the A.af repository root:

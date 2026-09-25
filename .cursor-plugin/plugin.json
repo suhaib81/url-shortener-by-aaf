@@ -8,6 +8,7 @@
   },
   "homepage": "https://a.af/developers/ai-connectors",
   "repository": "https://github.com/suhaib81/url-shortener-by-aaf",
+  "license": "MIT",
   "keywords": [
     "url shortener",
     "short links",
