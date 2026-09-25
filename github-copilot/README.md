@@ -13,6 +13,8 @@ copilot plugin list
 
 On first use, authorize the `aaf` MCP server through A.af's browser-based OAuth flow. Inspect the connection with `copilot mcp list` and the skill with `copilot skill list`. GitHub Copilot access and A.af access are separate; users need both accounts. Never paste an A.af API key into this plugin.
 
+This package targets interactive GitHub Copilot CLI sessions (and clients that use its MCP configuration). A GitHub organization may disable third-party MCP servers through its Copilot policy; if Copilot reports that the `aaf` server is blocked, an organization administrator must review that policy. The plugin cannot override it. GitHub Copilot cloud agent and code review do not currently support OAuth for remote MCP servers, so this OAuth-based connection is not available in those modes.
+
 GitHub Copilot CLI currently warns that direct repository and local-path installs are deprecated. The long-term public installation route is a reviewed marketplace listing. The repository-root `plugin.json` belongs to Google Antigravity; the Copilot package starts in this directory, not at the repository root.
 
 ## Try it
