@@ -7,7 +7,7 @@ URL Shortener by A.af
 ## Marketplace settings
 
 - Default listing language: English
-- Category: Productivity
+- Category: Utilities
 - Pricing: Free of charge with paid features
 - Installation: Individual + Admin Install
 - Visibility for the public release: Public. Do not select Private; Google does not allow changing visibility after saving it.
