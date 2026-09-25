@@ -1,6 +1,7 @@
 {
   "oauthScopes": [
-    "https://www.googleapis.com/auth/userinfo.email"
+    "https://www.googleapis.com/auth/userinfo.email",
+    "https://www.googleapis.com/auth/drive.file"
   ],
   "addOns": {
     "common": {
@@ -31,9 +32,21 @@
     "gmail": {},
     "calendar": {},
     "drive": {},
-    "docs": {},
-    "sheets": {},
-    "slides": {},
+    "docs": {
+      "onFileScopeGrantedTrigger": {
+        "runFunction": "https://a.af/api/google-workspace/addon"
+      }
+    },
+    "sheets": {
+      "onFileScopeGrantedTrigger": {
+        "runFunction": "https://a.af/api/google-workspace/addon"
+      }
+    },
+    "slides": {
+      "onFileScopeGrantedTrigger": {
+        "runFunction": "https://a.af/api/google-workspace/addon"
+      }
+    },
     "httpOptions": {
       "authorizationHeader": "SYSTEM_ID_TOKEN",
       "granularOauthPermissionSupport": "OPT_IN"
