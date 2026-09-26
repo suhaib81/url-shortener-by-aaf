@@ -11,6 +11,7 @@ URL Shortener by A.af connects leading AI assistants to the production A.af remo
 - **Google Gemini CLI:** retained as a native extension for supported enterprise and API-key users.
 - **Cursor:** packaged as a Cursor plugin with the A.af skill and remote MCP server. Submitted for public Marketplace review on September 25, 2026; not yet listed.
 - **GitHub Copilot:** packaged in [`github-copilot/`](github-copilot/README.md) as an Agent Plugins 1.0 skill plus authenticated remote MCP server. Direct installation is supported; public marketplace listing requires separate review.
+- **Kimi:** packaged in [`kimi/`](kimi/README.md) as an English-language Kimi plugin with the A.af skill and authenticated remote MCP server. Personal installation and public marketplace review are separate steps.
 
 ## Capabilities
 
@@ -47,6 +48,10 @@ copilot plugin install suhaib81/url-shortener-by-aaf:github-copilot
 ```
 
 Sign in to GitHub Copilot, then authorize the A.af MCP server with your own A.af account when prompted. Run `npm run test:github-copilot` to validate the package structure. Copilot CLI warns that direct repository installs are deprecated; a public Awesome Copilot listing needs separate review and is not implied by direct install.
+
+## Install in Kimi
+
+The Kimi package is in [`kimi/`](kimi/README.md). Import it with Kimi Work Plugin Builder for a personal test, or install its directory/ZIP in Kimi Code. Connect your own A.af account through OAuth when prompted. Run `npm run test:kimi` for structural validation; a successful local check does not imply public marketplace approval.
 
 ## License and branding
 
