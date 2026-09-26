@@ -8,7 +8,13 @@
   "license": "MIT",
   "interface": {
     "displayName": "URL Shortener by A.af",
+    "category": "PRODUCTIVITY",
     "shortDescription": "Short links, QR codes, and analytics in your workspace",
+    "tryPrompts": [
+      "Shorten this URL for me",
+      "Create a QR code for my link",
+      "Show analytics for my latest A.af short link"
+    ],
     "longDescription": "Create secure short links, manage existing links, generate QR codes, and inspect privacy-safe analytics in your A.af workspace. Connect your own A.af account with OAuth; workspace permissions and plan limits apply.",
     "developerName": "A.af",
     "websiteURL": "https://a.af"
