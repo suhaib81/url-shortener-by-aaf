@@ -3,13 +3,14 @@
   "version": "0.4.0",
   "private": true,
   "scripts": {
-    "test": "npm run test:copilot && npm run test:gemini && npm run test:antigravity && npm run test:google-workspace && npm run test:cursor && npm run test:github-copilot",
+    "test": "npm run test:copilot && npm run test:gemini && npm run test:antigravity && npm run test:google-workspace && npm run test:cursor && npm run test:github-copilot && npm run test:kimi",
     "test:copilot": "node scripts/verify-microsoft-copilot.mjs",
     "test:gemini": "node scripts/verify-gemini-extension.mjs",
     "test:antigravity": "node scripts/verify-antigravity-plugin.mjs",
     "test:google-workspace": "node scripts/verify-google-workspace-add-on.mjs",
     "test:cursor": "node scripts/verify-cursor-plugin.mjs",
     "test:github-copilot": "node scripts/verify-github-copilot-plugin.mjs",
+    "test:kimi": "node scripts/verify-kimi-plugin.mjs",
     "validate:gemini": "npx -y @google/gemini-cli@latest extensions validate ."
   }
 }

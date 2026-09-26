@@ -1,0 +1,28 @@
+{
+  "name": "url-shortener-by-aaf",
+  "version": "0.1.0",
+  "description": "Create and manage secure A.af short links, QR codes, and privacy-safe analytics from Kimi.",
+  "keywords": ["url-shortener", "short-links", "qr-code", "analytics", "mcp"],
+  "author": "A.af",
+  "homepage": "https://a.af/developers/ai-connectors",
+  "license": "MIT",
+  "interface": {
+    "displayName": "URL Shortener by A.af",
+    "category": "PRODUCTIVITY",
+    "shortDescription": "Short links, QR codes, and analytics in your workspace",
+    "tryPrompts": [
+      "Shorten this URL for me",
+      "Create a QR code for my link",
+      "Show analytics for my latest A.af short link"
+    ],
+    "longDescription": "Create secure short links, manage existing links, generate QR codes, and inspect privacy-safe analytics in your A.af workspace. Connect your own A.af account with OAuth; workspace permissions and plan limits apply.",
+    "developerName": "A.af",
+    "websiteURL": "https://a.af"
+  },
+  "skills": "./skills/",
+  "mcpServers": {
+    "aaf": {
+      "url": "https://a.af/mcp"
+    }
+  }
+}
