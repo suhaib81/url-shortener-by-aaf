@@ -1,5 +1,6 @@
 node_modules/
 .DS_Store
+dist/
 
 # Microsoft 365 Agents Toolkit generated files and local credentials.
 microsoft-copilot/.localConfigs/
