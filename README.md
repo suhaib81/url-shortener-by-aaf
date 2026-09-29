@@ -1,5 +1,7 @@
 # URL Shortener by A.af
 
+[![M8ven Publisher](https://m8ven.ai/badge/mcp/suhaib81-url-shortener-by-aaf-kzrngg?v=b0bb058aaebe49cc283bfcf840940969&variant=verified)](https://m8ven.ai/mcp/suhaib81-url-shortener-by-aaf-kzrngg)
+
 URL Shortener by A.af connects leading AI assistants to the production A.af remote MCP server. Every integration uses the same authenticated A.af workspaces, permissions, plan limits, URL validation, duplicate handling, Trust and Safety checks, analytics privacy controls, and audit trail as the web application.
 
 ## Platforms
